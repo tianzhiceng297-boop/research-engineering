@@ -26,7 +26,6 @@ nodes:
     status: "open"
     why_it_matters: ""
     decision_link: ""
-    depends_on: []
     evidence_ids: []
     reopen_when: []
 
@@ -37,9 +36,8 @@ nodes:
     confidence: "low" # low / medium / high；无充分依据时填 null
     confidence_basis: ""
     conditions: []
-    falsifiers: []
     implied_pricing: "" # 当前市值隐含的出货量、单价、份额、利润率、Capex、回款等前提；非估值任务可留空
-    kill_criteria: ""
+    kill_criteria: [] # 可证伪条件与触发降级/推翻该 claim 的观测信号
     evidence_ids: []
     reopen_when: []
 

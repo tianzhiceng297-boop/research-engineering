@@ -4,7 +4,7 @@
 
 ## 1. 启动与上下文隔离
 1. 只读本文件、根目录 README.md，以及当前项目的 README.md、graph.yaml、memory.md；没有项目时先初始化最小项目。
-2. 默认不批量读取 SYSTEM/00-06/、SYSTEM/THEORY/、_archive/ 或其他项目案例。遇到具体方法疑难时，通过 SYSTEM/INDEX.md 按需读取对应规约。
+2. 默认不批量读取 SYSTEM/00-06/、SYSTEM/THEORY/、_archive/ 或其他项目案例。开始具体研究前先查看 skills/ 目录文件列表，并按触发场景按需加载：涉及 A 股硬科技公司或产业链配套标的时，加载 skills/a_share_reality_audit.md；需要形成投资备忘录或正式商业交付时，加载 skills/deliver_memo.md。遇到具体方法疑难时，通过 SYSTEM/INDEX.md 按需读取对应规约。
 3. 定位项目优先使用用户指定路径；证据只读取 graph.yaml 引用或本轮问题明确相关的切片，不要无差别加载整个 evidence/。
 4. **市场环境钩子**：只有当二级市场研究推进到评估具体买点、交易时点或仓位大小时，才按需读取 projects/_market_regime/README.md 和 graph.yaml。先检查每项数据的 as_of、来源及计算脚本；超过项目定义的有效期、缺少数据管线或无法复现时，标记为 stale/unknown，不得当作当前风控事实。一级硬科技技术求真阶段不加载二级市场噪音。
 5. 新项目从 templates/ 复制 graph.yaml、memory.md；需要保存证据时使用 templates/evidence_slice.md。不要另建 decisions.md 或重复的判断台账。
