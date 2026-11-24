@@ -49,7 +49,6 @@ nodes:
     method: "search" # search / code / interview / field_check / monitoring
     next_step: ""
     expected_output: ""
-    depends_on: []
 
 edges:
   - from: "Q1"
