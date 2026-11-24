@@ -1,0 +1,72 @@
+# 问题图项目运行态模板
+# 只保存当前结构与状态；不要把证据正文或重复摘要塞进本文件。
+# 节点仅三类：question / claim / action。答案通过 claim 表达。
+# 状态统一：open / testing / waiting_human / closed / pruned。
+# closed = 当前研究目的下暂时闭合；pruned = 停止当前投入，不代表永久失效。
+# 重开触发器写入 reopen_when；这不代表已经建立自动监控。
+# evidence_ids 指向本项目 证据/E###.md，证据内容不复制到图中。
+
+schema_version: 1
+
+project:
+  id: ""
+  name: ""
+  created_at: ""
+  updated_at: ""
+  decision_context: ""
+  scope:
+    geography: ""
+    time_range: ""
+    boundary: ""
+
+central_question: "Q001"
+
+nodes:
+  - id: "Q001"
+    type: "question"
+    text: ""
+    status: "open"
+    priority: "high"
+    why_it_matters: ""
+    decision_link: "答案变化会改变什么判断或行动？"
+    unknowns: []
+    evidence_ids: []
+    reopen_when: []
+
+  - id: "C001"
+    type: "claim"
+    statement: ""
+    status: "testing"
+    confidence: "low" # low / medium / high；无依据时填 null，不使用伪精确百分比
+    confidence_basis: ""
+    conditions: []
+    falsifiers: []
+    evidence_ids: []
+    decision_effect: "若该命题成立/不成立，会改变什么？"
+    reopen_when: []
+
+  - id: "A001"
+    type: "action"
+    task: ""
+    status: "open"
+    method: "search" # 例如 search / code / interview / field_check / monitoring
+    owner: "model" # model / human
+    expected_output: ""
+    depends_on: []
+
+# 只记录会影响研究方向、优先级或判断的连接。
+# 可用关系：answers / precedes / constrains / supports / refutes / analogy / converges / reframes / redirects / motivates。
+edges:
+  - from: "C001"
+    relation: "answers"
+    to: "Q001"
+    explanation: ""
+
+# 只记录重大状态变化：核心命题被修正/推翻、问题转向、分支停枝或重新打开。
+# 普通编辑由 Git diff 保存，不在这里逐条记账。
+history:
+  - date: ""
+    node_ids: []
+    change: ""
+    reason: ""
+    evidence_ids: []
