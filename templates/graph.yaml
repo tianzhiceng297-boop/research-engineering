@@ -1,17 +1,15 @@
 # 问题图项目运行态模板
-# 只保存当前结构与状态；不要把证据正文或重复摘要塞进本文件。
-# 节点仅三类：question / claim / action。答案通过 claim 表达。
-# 状态统一：open / testing / waiting_human / closed / pruned。
-# closed = 当前研究目的下暂时闭合；pruned = 停止当前投入，不代表永久失效。
-# 重开触发器写入 reopen_when；这不代表已经建立自动监控。
-# evidence_ids 指向本项目 证据/E###.md，证据内容不复制到图中。
+# 节点类型只允许 question / claim / action。
+# 节点状态只允许 open / testing / waiting_human / closed / pruned。
+# Watch 是决策出口，不是节点状态；证据正文放在项目 evidence/，本文件只引用 ID。
+# graph.yaml 是当前状态唯一事实源；普通历史差异由 Git 保存。
 
 schema_version: 1
 
 project:
   id: ""
   name: ""
-  created_at: ""
+  stage: "exploration" # exploration / validation / decision
   updated_at: ""
   decision_context: ""
   scope:
@@ -19,54 +17,50 @@ project:
     time_range: ""
     boundary: ""
 
-central_question: "Q001"
+central_question: "Q1"
 
 nodes:
-  - id: "Q001"
+  - id: "Q1"
     type: "question"
-    text: ""
+    title: ""
     status: "open"
-    priority: "high"
     why_it_matters: ""
-    decision_link: "答案变化会改变什么判断或行动？"
-    unknowns: []
+    decision_link: ""
+    depends_on: []
     evidence_ids: []
     reopen_when: []
 
-  - id: "C001"
+  - id: "C1"
     type: "claim"
-    statement: ""
+    title: ""
     status: "testing"
-    confidence: "low" # low / medium / high；无依据时填 null，不使用伪精确百分比
+    confidence: "low" # low / medium / high；无充分依据时填 null
     confidence_basis: ""
     conditions: []
     falsifiers: []
+    implied_pricing: "" # 当前市值隐含的出货量、单价、份额、利润率、Capex、回款等前提；非估值任务可留空
+    kill_criteria: ""
     evidence_ids: []
-    decision_effect: "若该命题成立/不成立，会改变什么？"
     reopen_when: []
 
-  - id: "A001"
+  - id: "A1"
     type: "action"
-    task: ""
+    title: ""
     status: "open"
-    method: "search" # 例如 search / code / interview / field_check / monitoring
     owner: "model" # model / human
+    method: "search" # search / code / interview / field_check / monitoring
+    next_step: ""
     expected_output: ""
     depends_on: []
 
-# 只记录会影响研究方向、优先级或判断的连接。
-# 可用关系：answers / precedes / constrains / supports / refutes / analogy / converges / reframes / redirects / motivates。
 edges:
-  - from: "C001"
-    relation: "answers"
-    to: "Q001"
+  - from: "Q1"
+    relation: "depends_on" # depends_on / supports / weakens / triggers
+    to: "C1"
     explanation: ""
 
-# 只记录重大状态变化：核心命题被修正/推翻、问题转向、分支停枝或重新打开。
-# 普通编辑由 Git diff 保存，不在这里逐条记账。
 history:
   - date: ""
-    node_ids: []
     change: ""
     reason: ""
     evidence_ids: []
