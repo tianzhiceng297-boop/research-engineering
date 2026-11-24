@@ -1,0 +1,17 @@
+# 商业航天项目运行态
+# 从 templates/graph.yaml 精简初始化；未导入研究材料前不创建事实、假设或结论。
+schema_version: 1
+project:
+  id: "commercial-space"
+  name: "商业航天"
+  stage: "exploration"
+  updated_at: ""
+  decision_context: ""
+  scope:
+    geography: "中国"
+    time_range: ""
+    boundary: ""
+central_question: ""
+nodes: []
+edges: []
+history: []

@@ -1,0 +1,17 @@
+# 市场状态项目运行态
+# 未导入并验证数据管线前不创建市场事实、假设或结论。
+schema_version: 1
+project:
+  id: "market-regime"
+  name: "市场状态"
+  stage: "exploration"
+  updated_at: ""
+  decision_context: ""
+  scope:
+    geography: "中国A股市场"
+    time_range: ""
+    boundary: ""
+central_question: ""
+nodes: []
+edges: []
+history: []
